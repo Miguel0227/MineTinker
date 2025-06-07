@@ -865,9 +865,10 @@ public class ModManager {
 			}
 		}
 
-		if (meta.getAttributeModifiers() == null) return true;
+		Multimap<Attribute, AttributeModifier> modifiers = meta.getAttributeModifiers();
+		if (modifiers == null) return true;
 
-		for (final Map.Entry<Attribute, Collection<AttributeModifier>> entry : meta.getAttributeModifiers().asMap().entrySet()) {
+		for (final Map.Entry<Attribute, Collection<AttributeModifier>> entry : modifiers.asMap().entrySet()) {
 			final Modifier modifier = getModifierFromAttribute(entry.getKey());
 
 			if (modifier == null || modifier.equals(Hardened.instance())) {
